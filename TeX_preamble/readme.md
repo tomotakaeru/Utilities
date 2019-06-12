@@ -5,3 +5,5 @@ LaTeXの自分用preambleファイル
 枚数多いレポート（表紙あり）
 - preamble_experiment.tex<br>
 実験レポート（表紙あり，実験日などの記述あり）
+- preamble_seminar.tex<br>
+研究室輪講資料
