@@ -3,7 +3,8 @@
 \usepackage[dvipdfmx]{graphicx} %figure
 \usepackage[dvipdfmx]{color} %文字色
 \usepackage{listings,plistings} %ソースコード貼り付け
-\usepackage{url} %URLリンク貼り付け
+% \usepackage{url} %URLリンク貼り付け
+\usepackage[dvipdfmx]{hyperref} %ハイパーリンク
 \usepackage{siunitx} %SI単位系
 \usepackage{fancyhdr} %ヘッダ，フッタ
 \usepackage[left=19.05mm, right=19.05mm, top=25.40mm, bottom=25.40mm]{geometry}
@@ -23,6 +24,7 @@
 \renewcommand{\contentsname}{Contents} %目次名変更
 \renewcommand{\thesubsection}{\arabic{subsection}} %subsectionの表記変更
 \renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}} %subsubsectionの表記変更
+\renewcommand{\lstlistingname}{Src.} %lstlistingの表記変更
 \renewcommand{\figurename}{Fig.} %figureの表記変更
 \renewcommand{\tablename}{Table.} %tableの表記変更
 \renewcommand{\labelitemi}{$\triangleright$} %itemの表記変更
@@ -48,23 +50,24 @@
 % \rfoot{\thepage}
 %
 \lstset{ %ソースコードの見た目設定
-  basicstyle={\ttfamily},
-  identifierstyle={\small},
-  commentstyle={\smallitshape},
-  keywordstyle={\small\bfseries},
-  ndkeywordstyle={\small},
-  stringstyle={\small\ttfamily},
-  frame={tb},
-  breaklines=true,
-  columns=[l]{fullflexible},
-  numbers=left,
-  xrightmargin=0zw,
-  xleftmargin=3zw,
+  basicstyle={\footnotesize\ttfamily},
+  commentstyle={\scriptsize\color[rgb]{0.6,0.1,0.1}},
+  keywordstyle={\footnotesize\bfseries\color[rgb]{0.4,0.8,0.4}},
+  ndkeywordstyle={\scriptsize},
+  stringstyle={\scriptsize\ttfamily},
+  identifierstyle={\footnotesize\ttfamily\bfseries\color[rgb]{0.3,0.3,0.8}}, 
   numberstyle={\scriptsize},
+  frame={tb},
+  numbers=left,
   stepnumber=1,
   numbersep=1zw,
+  xleftmargin=3zw,
+  xrightmargin=0zw,
   lineskip=-0.5ex,
-  keepspaces=true
+  columns=[l]{fullflexible},
+  breaklines=true,
+  keepspaces=true,
+  showstringspaces=false
 }
 %
 %\maketitleの変更（report）

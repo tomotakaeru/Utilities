@@ -1,9 +1,11 @@
 \usepackage{amsmath,amssymb} %数式
 \usepackage{bm} %ベクトル表記
+\usepackage{mathtools} %行列要素を右寄せにできる
 \usepackage[dvipdfmx]{graphicx} %figure
 \usepackage[dvipdfmx]{color} %文字色
 \usepackage{listings,plistings} %ソースコード貼り付け
-\usepackage{url} %URLリンク貼り付け
+% \usepackage{url} %URLリンク貼り付け
+\usepackage[dvipdfmx]{hyperref} %ハイパーリンク
 \usepackage{siunitx} %SI単位系
 \usepackage{fancyhdr} %ヘッダ，フッタ
 \usepackage[left=19.05mm, right=19.05mm, top=25.40mm, bottom=25.40mm]{geometry}
@@ -23,10 +25,13 @@
 \renewcommand{\contentsname}{Contents} %目次名変更
 % \renewcommand{\thesubsection}{\arabic{subsection}.} %subsectionの表記変更
 % \renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}} %subsubsectionの表記変更
+\renewcommand{\lstlistingname}{Src.} %lstlistingの表記変更
 \renewcommand{\figurename}{Fig.} %figureの表記変更
 \renewcommand{\tablename}{Table.} %tableの表記変更
 \renewcommand{\labelitemi}{$\triangleright$} %itemの表記変更
 % \renewcommand{\labelenumi}{\textcircled{\scriptsize \arabic{enumi}}} %enumerateの表記変更
+\renewcommand{\refname}{References} %参考文献の表記変更
+\renewcommand{\abstractname}{Abstract} %概要の表記変更
 \renewcommand{\arraystretch}{1.1} %表の高さ変更
 %
 \def\seireki{\the\year/\ifnum\month<10 0\fi\the\month/\ifnum\day<10 0\fi\the\day} %日付を西暦表示 20xx/yy/zz
@@ -37,15 +42,16 @@
 % \makeatother
 %
 \pagestyle{fancy} %ヘッダ，フッタ
-\renewcommand{\headrulewidth}{0pt} %ヘッダ罫線
-\renewcommand{\footrulewidth}{0.4pt} %フッタ罫線
-\rhead{}
-\lhead{}
+\renewcommand{\headrulewidth}{0.4pt} %ヘッダ罫線
+\renewcommand{\footrulewidth}{0pt} %フッタ罫線
+\lhead{中須賀・船瀬研究室　輪講資料}
+% \rhead{\seireki}
+\rhead{2019/5/28}
 % \let\origtitle\title %タイトルを\footに
 % \renewcommand{\title}[1]{\lfoot{#1}\origtitle{#1}}
-\lfoot{\leftmark \quad \rightmark}
-\cfoot{}
-\rfoot{\thepage}
+% \lfoot{\leftmark \quad \rightmark}
+\cfoot{\thepage}
+% \rfoot{}
 %
 \lstset{ %ソースコードの見た目設定
   basicstyle={\ttfamily},
@@ -68,25 +74,19 @@
   showstringspaces=false
 }
 %
-%\maketitleの変更（thesis）
+%\maketitleの変更（seminar）
 \makeatletter
-\def\thesis#1{\def\@thesis{#1}}
-\def\id1#1{\def\@id1{#1}}
-\def\department#1{\def\@department{#1}}
-\def\dateexperiment#1{\def\@dateexperiment{#1}}
-\def\datesubmit#1{\def\@datesubmit{#1}}
 \def\@maketitle{
 \begin{center}
-\vspace*{150truept}
-{\LARGE \@thesis \par} %科目名
+\vspace*{5truept}
+% \vspace*{10truept}
+{\LARGE\bf \@title \par} % タイトル
 \vspace{5mm}
-{\Large\bf \@title \par} %タイトル
-\vspace{90mm}
-{提出日 \@date \par} %提出年月日
-\vspace{12mm}
-{\large \@department \par} %所属
-\vspace{3mm}
-{\large \@author \par} %学籍番号&氏名
+% {\large \@date \par} % 提出年月日
+% \vspace{2mm}
+% {\@department \par} % 所属
+{\large \@author \par} % 氏名
+\par\vskip 2.5em
 \end{center}
 }
 \makeatother

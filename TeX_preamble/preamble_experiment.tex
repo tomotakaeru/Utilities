@@ -1,8 +1,8 @@
 \usepackage{amsmath,amssymb} %数式
 \usepackage{bm} %ベクトル表記
-\usepackage{color} %文字色
 \usepackage[dvipdfmx]{graphicx} %figure
-\usepackage{listings} %ソースコード貼り付け
+\usepackage[dvipdfmx]{color} %文字色
+\usepackage{listings,plistings} %ソースコード貼り付け
 \usepackage{url} %URLリンク貼り付け
 \usepackage{siunitx} %SI単位系
 \usepackage{fancyhdr} %ヘッダ，フッタ
@@ -49,22 +49,23 @@
 %
 \lstset{ %ソースコードの見た目設定
   basicstyle={\ttfamily},
-  identifierstyle={\small},
-  commentstyle={\smallitshape},
-  keywordstyle={\small\bfseries},
+  commentstyle={\small\color[rgb]{0.6,0.1,0.1}},
+  keywordstyle={\bfseries\color[rgb]{0.4,0.8,0.4}},
   ndkeywordstyle={\small},
   stringstyle={\small\ttfamily},
-  frame={tb},
-  breaklines=true,
-  columns=[l]{fullflexible},
-  numbers=left,
-  xrightmargin=0zw,
-  xleftmargin=3zw,
+  identifierstyle={\ttfamily\bfseries\color[rgb]{0.3,0.3,0.8}}, 
   numberstyle={\scriptsize},
+  frame={tb},
+  numbers=left,
   stepnumber=1,
   numbersep=1zw,
+  xleftmargin=3zw,
+  xrightmargin=0zw,
   lineskip=-0.5ex,
-  keepspaces=true
+  columns=[l]{fullflexible},
+  breaklines=true,
+  keepspaces=true,
+  showstringspaces=false
 }
 %
 %\maketitleの変更（experiment）
