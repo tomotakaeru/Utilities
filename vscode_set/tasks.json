@@ -1,0 +1,131 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "C (Build & Run)",
+            "type": "shell",
+            "command": "gcc",
+            "options": {
+                "shell": {
+                    "executable": "C:\\Windows\\System32\\wsl.exe",
+                }
+            },
+            "args": [
+                "-Wall",
+                "-Wextra",
+                "-O0",
+                // "-g3",
+                "-o",
+                "`wslpath",
+                "'${fileDirname}/${fileBasenameNoExtension}.exe'`",
+                "`wslpath",
+                "'${file}'`\n",
+                "./${fileBasenameNoExtension}.exe"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "C++ (Build & Run)",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "C:\\Windows\\System32\\wsl.exe",
+                }
+            },
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "--pedantic-error",
+                "-Wall",
+                "-Wextra",
+                "-O0",
+                // "-g3",
+                "-o",
+                "`wslpath",
+                "'${fileBasenameNoExtension}.exe'`",
+                "`wslpath",
+                "'${file}'`\n",
+                "./${fileBasenameNoExtension}.exe"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "C++ (Build & Run) with matplotlib",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "C:\\Windows\\System32\\wsl.exe",
+                }
+            },
+            "command": "g++",
+            "args": [
+                "-std=c++11",
+                "--pedantic-error",
+                "-Wall",
+                "-Wextra",
+                "-O0",
+                // "-g3",
+                "-o",
+                "`wslpath",
+                "'${fileBasenameNoExtension}.exe'`",
+                "`wslpath",
+                "'${file}'`",
+                "-I/usr/include/python2.7",
+                // "-I/usr/include/x86_64-linux-gnu/python2.7",
+                // "-L/usr/lib",
+                // "-L/usr/lib/python2.7/config-x86_64-linux-gnu",
+                "-lpython2.7\n",
+                // "-lpthread",
+                // "-ldl", 
+                // "-lutil",
+                // "-lm",
+                // "-Xlinker",
+                // "-export-dynamic",
+                // "-Wl,-O1",
+                // "-Wl,-Bsymbolic-functions\n",
+                "./${fileBasenameNoExtension}.exe"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "C:\\Windows\\System32\\wsl.exe",
+                }
+            },
+            "command": "./${fileBasenameNoExtension}.exe",
+            "problemMatcher": []
+        },
+        {
+            "label": "Python",
+            "command": "${config:python.pythonPath}",
+            "type": "process",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "args": [
+                "${file}"
+            ],
+            "options": {
+                "env": {
+                    "PYTHONIOENCODING": "UTF-8"
+                }
+            }
+        }
+    ]
+}
