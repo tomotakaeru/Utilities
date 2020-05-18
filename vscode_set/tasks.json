@@ -58,7 +58,7 @@
             "problemMatcher": "$gcc"
         },
         {
-            "label": "C++ (Build & Run) with matplotlib",
+            "label": "C++ (Build & Run) with matplotlibcpp",
             "type": "shell",
             "options": {
                 "shell": {
@@ -67,33 +67,38 @@
             },
             "command": "g++",
             "args": [
-                "-std=c++11",
+                "-o",
+                "${fileBasenameNoExtension}.exe",
+                // "`wslpath",
+                // "'${fileBasenameNoExtension}.exe'`",
+                // "-std=c++17", //matplotlibcppの対象外
+                "-std=c++14",
                 "--pedantic-error",
                 "-Wall",
                 "-Wextra",
-                "-O0",
+                "-DNDEBUG",
+                "-O2",
                 // "-g3",
-                "-o",
-                "`wslpath",
-                "'${fileBasenameNoExtension}.exe'`",
                 "`wslpath",
                 "'${file}'`",
+                "src/RO_module.cpp",
+                "src/csv_module.cpp",
                 "-I/usr/include/python2.7",
-                // "-I/usr/include/x86_64-linux-gnu/python2.7",
-                // "-L/usr/lib",
-                // "-L/usr/lib/python2.7/config-x86_64-linux-gnu",
-                "-lpython2.7\n",
-                // "-lpthread",
-                // "-ldl", 
-                // "-lutil",
-                // "-lm",
-                // "-Xlinker",
-                // "-export-dynamic",
-                // "-Wl,-O1",
-                // "-Wl,-Bsymbolic-functions\n",
+                "-lpython2.7",
+                "-L/opt/intel/tbb/tbb2019_20190605oss/lib/intel64/gcc4.7",
+                "-ltbb",
+                "-lboost_serialization",
+                "-lpagmo",
+                "&&", //コンパイル通った時だけ実行してほしい
+                "source",
+                "~/.profile",
+                "&&",
                 "./${fileBasenameNoExtension}.exe"
             ],
-            "group": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "presentation": {
                 "reveal": "silent"
             },
@@ -114,10 +119,7 @@
             "label": "Python",
             "command": "${config:python.pythonPath}",
             "type": "process",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "args": [
                 "${file}"
             ],
