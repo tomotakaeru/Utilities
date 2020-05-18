@@ -1,0 +1,127 @@
+\usepackage{amsmath,amssymb} %数式
+\usepackage{bm} %ベクトル表記
+\usepackage{mathtools} %行列要素を右寄せにできる
+\usepackage[dvipdfmx]{graphicx} %figure
+\usepackage[dvipdfmx]{color} %文字色
+\usepackage{listings,plistings} %ソースコード貼り付け
+\usepackage[linesnumbered, tworuled]{algorithm2e} %疑似コード
+% \usepackage{url} %URLリンク貼り付け
+\usepackage[dvipdfmx, hidelinks]{hyperref} %ハイパーリンク
+\usepackage{siunitx} %SI単位系
+\usepackage{fancyhdr} %ヘッダ，フッタ
+\usepackage[left=19.05mm, right=19.05mm, top=25.40mm, bottom=25.40mm]{geometry}
+\usepackage{multicol} %一部段組
+\usepackage{multirow} %表セル縦結合
+\usepackage{lscape} %表を90°回転
+\usepackage{here} %図を強制的に指定位置に置く
+\usepackage{lastpage} %総ページ数が分かる
+%
+\newcommand{\diver}{\mathrm{div}\,}
+\newcommand{\grad}{\mathrm{grad}\,}
+\newcommand{\rot}{\mathrm{rot}\,}
+\newcommand{\bhline}[1]{\noalign{\hrule height #1}} %表の横罫線の太さ変更\bhline{1.2pt}
+\newlength\savedwidth
+\newcommand{\bcline}[1]{\noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 1.2pt} \cline{#1}
+\noalign{\global\arrayrulewidth\savedwidth}} %表の横罫線の太さ変更\bcline{1-3} %1.2pt固定
+\newcommand{\bvline}[1]{\vrule width #1} %表の縦罫線の太さ変更
+%
+% \renewcommand{\abstractname}{\Large Abstract} %概要の表記変更
+% \newcommand{\keywordsname}{\Large Keywords} %自分で定義したenvironment{keywords}の表記変更
+\renewcommand{\contentsname}{Contents} %目次名変更
+\setcounter{tocdepth}{3} %目次の階層深さをsubsubsectionにする
+\setcounter{secnumdepth}{3} %見出しの番号付けをsubsubsectionまで行う
+\renewcommand{\listfigurename}{List of Figures} %図目次名変更
+\renewcommand{\listtablename}{List of Tables} %表目次名変更
+\renewcommand{\figurename}{Fig.} %figureの表記変更
+\renewcommand{\tablename}{Table } %tableの表記変更
+% \renewcommand{\thesubsection}{\arabic{subsection}.} %subsectionの表記変更
+% \renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}} %subsubsectionの表記変更
+\renewcommand{\labelitemi}{$\triangleright$} %itemの表記変更
+% \renewcommand{\labelenumi}{\textcircled{\scriptsize \arabic{enumi}}} %enumerateの表記変更
+\renewcommand{\refname}{References} %参考文献の表記変更
+\renewcommand{\appendixname}{Appendix } %付録の表記変更
+\renewcommand{\arraystretch}{1.1} %表の高さ変更
+%
+\def\seireki{\the\year/\ifnum\month<10 0\fi\the\month/\ifnum\day<10 0\fi\the\day} %日付を西暦表示 20xx/yy/zz
+%
+\makeatletter %数式番号にsection番号追加
+\@addtoreset{equation}{section}
+\def\theequation{\thesection.\arabic{equation}}
+\makeatother
+%
+\pagestyle{fancy} %ヘッダ，フッタ
+\renewcommand{\headrulewidth}{0.4pt} %ヘッダ罫線
+\renewcommand{\footrulewidth}{0pt} %フッタ罫線
+\lhead{令和元年度 学士論文試問資料}
+\rhead{東京大学工学部 航空宇宙工学科 中須賀・船瀬研究室}
+% \let\origtitle\title %タイトルを\footに
+% \renewcommand{\title}[1]{\lfoot{#1}\origtitle{#1}}
+% \lfoot{\leftmark \quad \rightmark}
+\cfoot{\thepage\:/\:\pageref{LastPage}}
+% \rfoot{}
+%
+% \makeatletter %chapterの１ページ目からfancyを適用する
+% \renewcommand{\chapter}{%
+%   \if@openright\cleardoublepage\else\clearpage\fi
+%   \global\@topnum\z@
+%   \secdef\@chapter\@schapter}
+% \makeatother
+%
+\lstset{ %ソースコードの見た目設定
+  basicstyle={\ttfamily},
+  commentstyle={\small\color[rgb]{0.6,0.1,0.1}},
+  keywordstyle={\bfseries\color[rgb]{0.4,0.8,0.4}},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  identifierstyle={\ttfamily\bfseries\color[rgb]{0.3,0.3,0.8}}, 
+  numberstyle={\scriptsize},
+  frame={tb},
+  numbers=left,
+  stepnumber=1,
+  numbersep=1zw,
+  xleftmargin=3zw,
+  xrightmargin=0zw,
+  lineskip=-0.5ex,
+  columns=[l]{fullflexible},
+  breaklines=true,
+  keepspaces=true,
+  showstringspaces=false
+}
+%
+%\maketitleの変更（resume）
+\makeatletter
+\def\id#1{\def\@id{#1}}
+\def\@maketitle{
+  \vspace{5mm}
+  \begin{center}
+  {\LARGE\bf \@title \par} % タイトル
+  \vspace{5mm}
+  {\large \@date \quad 学籍番号：\@id \quad 氏名：\@author \par} % 提出年月日&学籍番号&氏名
+  \par\vskip 2em
+  \end{center}
+}
+\makeatother
+%
+%abstractでページ番号が表示されないため，自分で書いてみたら解決（多分newboxまわりのせいだった？）
+% \newenvironment{myabstract}{
+%   \begin{center}
+%     {\headfont \abstractname\vspace{-.5em}\vspace{0pt}}
+%   \end{center}
+%   \vspace{6mm}
+%   \list{}{
+%     \listparindent\parindent
+%     \itemindent \listparindent
+%     \rightmargin \leftmargin}
+%   \item\relax
+%   }{\endlist
+% }
+% %
+%keywordsの環境
+% \newenvironment{mykeywords}{
+%   \begin{center}
+%     {\headfont \keywordsname\vspace{-.5em}\vspace{0pt}}
+%   \end{center}
+%   \vspace{6mm}
+%   \begin{center}
+%   }{\end{center}
+% }
